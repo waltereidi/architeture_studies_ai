@@ -19,6 +19,7 @@ from typing import List, Optional
 
 from ai_validation.validator import PromptValidator, ValidationStatus
 from ai_validation.storage import PromptStorage
+from service.domain_checker import check_service_domains, detect_git_changes_in_service
 
 
 def print_banner() -> None:
@@ -148,6 +149,41 @@ def handle_show(subfolder_name: str) -> None:
         print(details["response_content"])
 
 
+def handle_check_service() -> int:
+    service_dir = Path("service")
+    is_valid, violations, domains = check_service_domains(service_dir)
+    changed_files = detect_git_changes_in_service(Path("."))
+
+    print_banner()
+    print("\nAuditoria de Delimitação de Domínio da Pasta 'service/':\n")
+
+    if changed_files:
+        print("Modificações recentes detectadas via Git em 'service/':")
+        for cf in changed_files:
+            print(f"  * {cf}")
+        print()
+    else:
+        print("Nenhuma modificação não commitada detectada em 'service/'.\n")
+
+    print(f"Subpastas de Domínio Cadastradas ({len(domains)}):")
+    for dom, files in sorted(domains.items()):
+        print(f"  📁 service/{dom}/ ({len(files)} arquivos)")
+        for fl in files[:3]:
+            print(f"      - {fl}")
+        if len(files) > 3:
+            print(f"      ... e mais {len(files) - 3} arquivos")
+
+    if violations:
+        print("\n[✗ VIOLAÇÕES ENCONTRADAS]:")
+        for v in violations:
+            print(f"  - {v}")
+        print("\nFalha: Arquivos soltos ou domínios sem __init__.py identificados.")
+        return 1
+
+    print("\n[✓ CONFORME]: Toda lógica em 'service/' está devidamente encapsulada em subpastas de domínio.")
+    return 0
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Sistema de Validação de Regras de Funcionamento e Histórico de Prompts para IA."
@@ -203,8 +239,16 @@ def main() -> None:
         type=str,
         help="Exibe os detalhes de uma subpasta de prompt específica."
     )
+    parser.add_argument(
+        "--check-service",
+        action="store_true",
+        help="Audita a pasta service/ e valida se todas as alterações pertencem a subpastas de domínio."
+    )
 
     args = parser.parse_args()
+
+    if args.check_service:
+        sys.exit(handle_check_service())
 
     if args.list:
         handle_list()

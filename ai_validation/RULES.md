@@ -104,3 +104,16 @@ Cada prompt recebe uma pontuação de 0 a 100 baseada no cumprimento das diretri
 - **Status Aprovado**: Score ≥ 70 e 0 violações de segurança.
 - **Status Alerta / Atenção**: Score entre 40 e 69 (sugerida revisão, mas pode ser salvo/processado).
 - **Status Reprovado**: Violação de segurança ou Score < 40.
+
+---
+
+## 7. Regras de Código: Delimitação Estrita de Domínio em `service/` (SERV-01)
+
+Sempre que a Inteligência Artificial ou desenvolvedores atuarem no código da pasta `service/`:
+
+1. **Detecção Compulsória**: A IA deve monitorar e identificar alterações em arquivos sob o caminho `service/`.
+2. **Proibição de Arquivos Raiz**: É terminantemente proibido criar arquivos de lógica de negócio diretamente na raiz de `service/` (apenas `__init__.py`, `README.md` e `RULES.md` são permitidos).
+3. **Alocação por Domínio**: Toda modificação deve ser direcionada para uma **subpasta que delimite um domínio** específico (ex: `service/prompt_governance/`, `service/audit_logging/`, `service/model_interaction/`).
+4. **Criação de Novos Domínios**: Se a alteração introduzir um novo conceito não contemplado, a IA deve criar uma nova subpasta em `service/<novo_dominio>/` acompanhada de seu respectivo `__init__.py` e documentação de escopo.
+5. **Referência Direta**: As regras completas de governança de serviços estão detalhadas em [`service/RULES.md`](file:///home/walter/repos/architeture_studies_ai/service/RULES.md).
+
