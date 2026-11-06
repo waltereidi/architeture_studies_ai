@@ -1,0 +1,61 @@
+{
+  "is_valid": false,
+  "status": "REJECTED",
+  "score": 0,
+  "violations": [
+    {
+      "rule_id": "LEN-01",
+      "rule_name": "Comprimento Mínimo",
+      "message": "Prompt muito curto (53 chars, 4 palavras). Mínimo esperado: 30 chars e 5 palavras.",
+      "severity": "HIGH"
+    },
+    {
+      "rule_id": "SEC-01",
+      "rule_name": "Vazamento de Segredo: OpenAI / Anthropic API Key",
+      "message": "Detectado potencial segredo/credencial correspondente a 'OpenAI / Anthropic API Key'.",
+      "severity": "CRITICAL"
+    }
+  ],
+  "quality_breakdown": [
+    {
+      "criterion": "Objetivo Explícito",
+      "score": 25,
+      "max_score": 25,
+      "passed": true,
+      "details": "Verbos identificados: analise"
+    },
+    {
+      "criterion": "Contexto Técnico / Arquitetura",
+      "score": 25,
+      "max_score": 25,
+      "passed": true,
+      "details": "Termos técnicos encontrados: go"
+    },
+    {
+      "criterion": "Formato de Saída",
+      "score": 20,
+      "max_score": 20,
+      "passed": true,
+      "details": "Formato solicitado: código"
+    },
+    {
+      "criterion": "Restrições e Escopo",
+      "score": 0,
+      "max_score": 15,
+      "passed": false,
+      "details": "Nenhuma restrição ou limitação explícita identificada."
+    },
+    {
+      "criterion": "Extensão Adequada",
+      "score": 0,
+      "max_score": 15,
+      "passed": false,
+      "details": "Abaixo do mínimo recomendado."
+    }
+  ],
+  "suggestions": [
+    "Detalhe melhor o objetivo, contexto e o que você espera que a IA produza.",
+    "Remova chaves de API, senhas, tokens de autenticação ou hashes do prompt.",
+    "Se aplicável, defina o que NÃO fazer (ex: 'sem bibliotecas externas', 'não invente requisitos')."
+  ]
+}

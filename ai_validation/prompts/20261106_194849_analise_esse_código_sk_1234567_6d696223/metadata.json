@@ -1,0 +1,18 @@
+{
+  "id": "6d696223",
+  "subfolder": "20261106_194849_analise_esse_código_sk_1234567_6d696223",
+  "created_at": "2026-11-06T19:48:49.560512",
+  "author": "developer",
+  "title": "Analise Esse Código Sk 1234567",
+  "tags": [],
+  "character_count": 53,
+  "word_count": 4,
+  "validation_status": "REJECTED",
+  "validation_score": 0,
+  "is_valid": false,
+  "files": {
+    "prompt": "prompt.md",
+    "validation_report": "validation_report.json",
+    "response": null
+  }
+}

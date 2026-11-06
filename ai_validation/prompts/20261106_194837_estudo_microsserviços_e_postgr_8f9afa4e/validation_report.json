@@ -1,0 +1,44 @@
+{
+  "is_valid": true,
+  "status": "APPROVED",
+  "score": 100,
+  "violations": [],
+  "quality_breakdown": [
+    {
+      "criterion": "Objetivo Explícito",
+      "score": 25,
+      "max_score": 25,
+      "passed": true,
+      "details": "Verbos identificados: analise"
+    },
+    {
+      "criterion": "Contexto Técnico / Arquitetura",
+      "score": 25,
+      "max_score": 25,
+      "passed": true,
+      "details": "Termos técnicos encontrados: arquitetura, microsserviços, postgres, python"
+    },
+    {
+      "criterion": "Formato de Saída",
+      "score": 20,
+      "max_score": 20,
+      "passed": true,
+      "details": "Formato solicitado: markdown, tabela"
+    },
+    {
+      "criterion": "Restrições e Escopo",
+      "score": 15,
+      "max_score": 15,
+      "passed": true,
+      "details": "Diretrizes/Restrições identificadas."
+    },
+    {
+      "criterion": "Extensão Adequada",
+      "score": 15,
+      "max_score": 15,
+      "passed": true,
+      "details": "164 caracteres, 23 palavras."
+    }
+  ],
+  "suggestions": []
+}

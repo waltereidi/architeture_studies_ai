@@ -1,0 +1,22 @@
+{
+  "id": "8f9afa4e",
+  "subfolder": "20261106_194837_estudo_microsserviços_e_postgr_8f9afa4e",
+  "created_at": "2026-11-06T19:48:37.604968",
+  "author": "developer",
+  "title": "Estudo Microsserviços e Postgres",
+  "tags": [
+    "arquitetura",
+    "microsservicos",
+    "postgres"
+  ],
+  "character_count": 164,
+  "word_count": 23,
+  "validation_status": "APPROVED",
+  "validation_score": 100,
+  "is_valid": true,
+  "files": {
+    "prompt": "prompt.md",
+    "validation_report": "validation_report.json",
+    "response": "response.md"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "version": "1.0.0",
+  "name": "AI Architecture Validation Rules Configuration",
+  "limits": {
+    "min_characters": 30,
+    "max_characters": 100000,
+    "min_words": 5
+  },
+  "security": {
+    "block_on_secret": true,
+    "secret_patterns": [
+      {
+        "name": "OpenAI / Anthropic API Key",
+        "pattern": "(?:sk-[a-zA-Z0-9_-]{20,}|sk-ant-[a-zA-Z0-9_-]{20,})",
+        "severity": "CRITICAL"
+      },
+      {
+        "name": "AWS Access Key",
+        "pattern": "(?:AKIA|ABIA|ACCA|ASIA)[0-9A-Z]{16}",
+        "severity": "CRITICAL"
+      },
+      {
+        "name": "GitHub Token",
+        "pattern": "(?:ghp|gho|ghu|ghs|ghr)_[a-zA-Z0-9]{36,}",
+        "severity": "CRITICAL"
+      },
+      {
+        "name": "Generic Private Key",
+        "pattern": "-----\\s*BEGIN[ A-Z0-9_-]*PRIVATE KEY\\s*-----",
+        "severity": "CRITICAL"
+      },
+      {
+        "name": "Connection String with Password",
+        "pattern": "(?:postgres|mysql|mongodb|redis):\\/\\/[^\\s:]+:[^\\s@]+@[^\\s:]+",
+        "severity": "HIGH"
+      },
+      {
+        "name": "JWT Token",
+        "pattern": "eyJ[a-zA-Z0-9_-]{10,}\\.eyJ[a-zA-Z0-9_-]{10,}\\.[a-zA-Z0-9_-]{10,}",
+        "severity": "HIGH"
+      }
+    ]
+  },
+  "quality_checks": {
+    "action_verbs": [
+      "analisar", "analise", "projetar", "projete", "criar", "crie", "implementar",
+      "implemente", "comparar", "compare", "refatorar", "refatore", "explicar",
+      "explique", "estruturar", "estruture", "avaliar", "avalie", "documentar",
+      "descrever", "construir", "otimizar", "design", "refactor", "create", "compare"
+    ],
+    "context_keywords": [
+      "arquitetura", "architecture", "microsserviços", "microservices", "monolito",
+      "monolith", "clean architecture", "ddd", "solid", "api", "rest", "graphql",
+      "grpc", "banco de dados", "database", "postgres", "redis", "kafka", "rabbit",
+      "cloud", "aws", "docker", "kubernetes", "python", "typescript", "go", "java"
+    ],
+    "output_format_keywords": [
+      "markdown", "json", "mermaid", "diagrama", "tabela", "código", "passo a passo",
+      "lista", "tópicos", "schema", "relatório", "docstring", "template", "yaml"
+    ],
+    "constraint_keywords": [
+      "não", "sem", "proibido", "apenas", "limite", "restrição", "restricoes",
+      "deve", "obrigatoriamente", "evite", "never", "only", "must", "without"
+    ]
+  },
+  "scoring_weights": {
+    "action_goal": 25,
+    "technical_context": 25,
+    "output_format": 20,
+    "constraints": 15,
+    "adequate_length": 15
+  }
+}
